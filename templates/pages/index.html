@@ -76,7 +76,6 @@
                                       <div class="dropdown">
                                         <button class="dropbtn">Sign As</button>
                                         <div class="dropdown-content" style="overflow: visible;">
-                                            <li><a class="dropdown-item" href="http://localhost:8000/admin">Admin</a></li>
                                             <li><a class="dropdown-item" href="{% url 'signd' %}">Doctor</a></li>
                                             <li><a class="dropdown-item" href="{% url 'signn' %}">Nurse</a></li>
                                             <li><a class="dropdown-item" href="{% url 'signp' %}">Patient</a></li>
@@ -85,15 +84,6 @@
  
  
                      </ul>
-                 </div>
- 
- 
-                                 <div class="search-wrapper">
-                         <div class="input-holder">
-                                 <input type="text" class="search-input" placeholder="Type to search" />
-                                 <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-                         </div>
-                         <span class="close" onclick="searchToggle(this, event);"></span>
                  </div>
              </div>
  

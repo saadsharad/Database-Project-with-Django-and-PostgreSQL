@@ -58,7 +58,8 @@ class Appointment(models.Model):
     Mobil = models.CharField(max_length=30)
     Email = models.EmailField(max_length=50)
     date = models.DateField()
-    upload = models.FileField( upload_to='uploads/%Y/%m/%d' )
+    upload = models.ImageField( upload_to='photos/%Y/%m/%d' )
+    #upload = models.FileField( upload_to='uploads/%Y/%m/%d' )
 
     time= models.TimeField()
 

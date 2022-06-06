@@ -378,7 +378,7 @@ Ambulances are used to respond to medical emergencies by emergency medical servi
                         <div class="well-title">
                             <h2>Book an Appointment</h2>
                         </div>
-						<form action="/accounts/appointmentp" method="POST">
+						<form action="/accounts/appointmentp" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                             <!-- Form start -->
                             <div class="row">

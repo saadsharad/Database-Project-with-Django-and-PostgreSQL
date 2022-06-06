@@ -139,7 +139,7 @@ def appointmentp(request):
         Mobil = request.POST['Mobil']
         Email = request.POST['Email']
         date = request.POST['date']
-        upload = request.POST['upload']
+        upload = request.FILES['upload']
         time= request.POST['time']
         appointment.name=name
         appointment.Mobil=Mobil
