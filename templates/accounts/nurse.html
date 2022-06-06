@@ -50,7 +50,7 @@
 		<nav class="navbar header-nav navbar-expand-lg">
 			<div class="container">
 
-				<a class="navbar-brand" href="{% url 'index' %}"><img src="images/logo10.png" alt="image"></a>
+				<a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo10.png' %}" alt="image"></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
 					aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
 					<span></span>
@@ -222,7 +222,6 @@
 										<th>Address</th>
 										<th>SSN</th>
 										<th>Age</th>
-										<th>Gender</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -230,14 +229,13 @@
 									<tr>
 										<th scope="row">{{r.Fname}}</th>
 										<td>{{r.Lname}}</td>
-										<td>{{r.photo}}</td>
+										<td><img src ="{{ r.Photo.url }}" style="width:60px;height:60px;"></td>
 										<td>{{r.Mobil}}</td>
 										<td>{{r.Email}}</td>
 										<td>{{r.Password}}</td>
 										<td> {{r.Address}}</td>
 										<td> {{r.SSN}}</td>
 										<td> {{r.Age}}</td>
-										<td>{{r.Gender}}</td>
 										
 										
 									</tr>
@@ -255,51 +253,6 @@
 	</div>
 
 	<!-- End view -->
-
-	<!-- Start rooms -->
-	<!--###################################################-->
-	<div id="rooms" class="gallery-box">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="title-box">
-						<h2>Rooms</h2>
-						<p>Extraordinary care and dedication </p>
-					</div>
-				</div>
-			</div>
-
-			<form>
-				<!-- Form start -->
-				<div class="row">
-					<!-- Select Basic -->
-					<div class="col-md-12">
-						<div class="form-group">
-							<label class="control-label" for="appointmentfor">Room Number</label>
-							<select id="appointmentfor" name="appointmentfor" class="form-control">
-								<option value="Choose Department">Choose Room Number</option>
-								<option value="1">Room 1</option>
-								<option value="Dermatologist">Room 2</option>
-								<option value="Orthology">Room 3</option>
-								<option value="Anesthesiology">Room 4</option>
-								<option value="Ayurvedic">Room 5</option>
-							</select>
-						</div>
-					</div>
-					<!-- Button -->
-					<div class="col-md-12">
-						<div class="form-group">
-							<button id="singlebutton" name="singlebutton" class="new-btn-d br-2"
-								style="border-color:#12557f ; color: #12557f">Submit</button>
-							<!--#######-->
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-	<!-- End rooms -->
-
 	<!-- Start Footer -->
 	<footer class="footer-box">
 		<div class="container">

@@ -9,12 +9,12 @@ from pages.models import ContactUS
 # Create your views here.
 
 def index(request):
-    context={
-        'doctors': Doctor.objects.all()
-        #'nurses': Nurse.objects.all(),
-        #'devices': Device.objects.all()
+    context ={
+        'doctors': Doctor.objects.filter(status=1),
+        'nurses': Nurse.objects.filter(status=1),
+        'devices': Device.objects.all()
     }
-    return render(request , 'pages/index.html' , context)
+    return render(request, 'pages/index.html', context=context)
 
 def index1(request): 
     if request.method == "POST":

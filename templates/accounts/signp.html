@@ -8,11 +8,12 @@
 </head>
 <body>
   {% include 'alerm.html' %}
+  <br>
   <div class="container" id="container">
 
     <div class="form-container sign-up-container">
       <div class="sup">
-        <form class="up" method="POST">
+        <form class="up" method="POST"  enctype="multipart/form-data">
           {% csrf_token %}
           <h1 class="ca">Create Account</h1>
   

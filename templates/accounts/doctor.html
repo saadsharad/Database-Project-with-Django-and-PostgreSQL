@@ -224,7 +224,6 @@
 										<th>Address</th>
 										<th>SSN</th>
 										<th>Age</th>
-										<th>Gender</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -232,14 +231,13 @@
 									<tr>
 										<th scope="row">{{r.Fname}}</th>
 										<td>{{r.Lname}}</td>
-										<td>{{r.photo}}</td>
+										<td><img src ="{{ r.Photo.url }}" style="width:60px;height:60px;"></td>
 										<td>{{r.Mobil}}</td>
 										<td>{{r.Email}}</td>
 										<td>{{r.Password}}</td>
 										<td> {{r.Address}}</td>
 										<td> {{r.SSN}}</td>
 										<td> {{r.Age}}</td>
-										<td>{{r.Gender}}</td>
 										
 										
 									</tr>

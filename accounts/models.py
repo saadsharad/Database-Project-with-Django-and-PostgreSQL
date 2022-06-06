@@ -17,6 +17,8 @@ class Doctor(models.Model):
     Address = models.CharField(max_length=60)
     SSN = models.PositiveIntegerField()
     Age= models.PositiveIntegerField()
+    ORDER_STATUS = ((0, 'New'), (1, 'Approved'), (2, 'Rejected'))
+    status = models.SmallIntegerField(choices=ORDER_STATUS, default=0)
 
     def __str__(self):
         return self.Fname
@@ -33,6 +35,8 @@ class Nurse(models.Model):
     Address = models.CharField(max_length=60)
     SSN = models.PositiveIntegerField()
     Age= models.PositiveIntegerField()
+    ORDER_STATUS = ((0, 'New'), (1, 'Approved'), (2, 'Rejected'))
+    status = models.SmallIntegerField(choices=ORDER_STATUS, default=0)
 
     def __str__(self):
         return self.Fname

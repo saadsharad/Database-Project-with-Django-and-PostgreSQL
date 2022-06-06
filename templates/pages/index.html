@@ -277,94 +277,20 @@
                  </div>
              </div>
  
-             <div class="popup-gallery row clearfix"> <!--###################################################-->
+             <div class="popup-gallery row clearfix">
+                {% for dev in devices|slice:':6' %}
                  <div class="col-md-3 col-sm-6">
                      <div class="box-gallery">
-                         <img src="{% static 'images/syringepump.jpeg' %}" alt="">
+                         <img src="{{ dev.photo.url }}" style="width:360px;height:360px;">
                          <div class="box-content">
-                             <h3 class="title">Syringe Pump</h3>
+                             <h3 class="title">{{ dev.name }}</h3>
                              <ul class="icon">
-                                 <li><a href="{% static 'images/syringe pump.jpg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
+                                 <li><a href="{{ dev.photo.url }}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
                              </ul>
                          </div>
                      </div>
                  </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/patient monitor.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">Patient Monitor</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/patient monitor.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/ecg.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">ECG</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/ecg.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/ventilator.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">Ventilator</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/ventilator.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/iv stand‏.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">Iv Stand‏</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/iv stand‏.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/anesthesia machine.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">Anesthesia Machine</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/anesthesia machine.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/Stretcher.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">Stretcher</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/Stretcher.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6">
-                     <div class="box-gallery">
-                         <img src="{% static 'images/suction unit.jpeg' %}" alt="">
-                         <div class="box-content">
-                             <h3 class="title">Suction Unit</h3>
-                             <ul class="icon">
-                                 <li><a href="{% static 'images/suction unit.jpeg' %}"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-                             </ul>
-                         </div>
-                     </div>
+                 {% endfor %}
                  </div>
              </div>
          </div>
@@ -387,14 +313,14 @@
              </div>
  
              <div class="row">
-            {% for doc in doctors|slice:':3' %}    
+            {% for doc in doctors|slice:':3' %}   
                  <div class="col-md-4 col-sm-6">
                      <div class="our-team">
                          <div class="pic">
-                             <img src="{{ doc.Photo.url }}">
+                             <img src="{{ doc.Photo.url }}" style="width:360px;height:360px;">
                          </div>
                          <div class="team-content">
-                             <h3 class="title">{{ doc.Fname }}</h3>
+                             <h3 class="title">{{ doc.Fname }} {{doc.Lname}}</h3>
                              <span class="post">Doctor</span>
  
                          </div>
@@ -421,44 +347,20 @@
              </div>
  
              <div class="row">
-                 <div class="col-md-4 col-sm-6">
-                     <div class="our-team">
-                         <div class="pic">
-                             <img src="{% static 'images/img-1.jpg' %}" alt="">
-                         </div>
-                         <div class="team-content">
-                             <h3 class="title">Sara Ayman</h3>
-                             <span class="post">Nurse</span>
- 
-                         </div>
-                     </div>
-                 </div>
- 
-                 <div class="col-md-4 col-sm-6">
-                     <div class="our-team">
-                         <div class="pic">
-                             <img src="{% static 'images/img-2.jpg' %}" alt="">
-                         </div>
-                         <div class="team-content">
-                             <h3 class="title">Saad Sharada</h3>
-                             <span class="post">Nurse</span>
- 
-                         </div>
-                     </div>
-                 </div>
- 
-                 <div class="col-md-4 col-sm-6">
-                     <div class="our-team">
-                         <div class="pic">
-                             <img src="{% static 'images/img-3.jpg' %}" alt="">
-                         </div>
-                         <div class="team-content">
-                             <h3 class="title">Mariam Ahmed</h3>
-                             <span class="post">Nurse</span>
- 
-                         </div>
-                     </div>
-                 </div>
+                {% for nur in nurses|slice:':3' %}  
+                    <div class="col-md-4 col-sm-6">
+                        <div class="our-team">
+                            <div class="pic">
+                                <img src="{{ nur.Photo.url }}" alt="" style="width:360px;height:360px;">
+                            </div>
+                            <div class="team-content">
+                                <h3 class="title">{{ nur.Fname }} {{nur.Lname}}</h3>
+                                <span class="post">Nurse</span>
+    
+                            </div>
+                        </div>
+                    </div>
+                 {% endfor %}
              </div>
  
          </div>

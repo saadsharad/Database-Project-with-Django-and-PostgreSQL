@@ -10,6 +10,7 @@ class Device(models.Model):
     photo = models.ImageField( upload_to='photos/%Y/%m/%d' )
     is_active = models.BooleanField( default=True )
     purchasing_date = models.DateTimeField( default=datetime.now )
+    calibration_date = models.DateTimeField( default=datetime.now )
     serial_number = models.PositiveIntegerField()
     room_number = models.PositiveIntegerField()
 

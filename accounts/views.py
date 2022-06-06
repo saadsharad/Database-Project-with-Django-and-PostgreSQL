@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import  Nurse, Doctor, Patient, Appointment
 import re
 from django.contrib import messages
+from pages.models import Device
 
 #sign up code for doctor 
 def signd(request):
@@ -10,7 +11,7 @@ def signd(request):
         #variabels
         Fname = request.POST['fname']
         Lname = request.POST['lname']
-        Photo = request.POST['photo']
+        Photo = request.FILES['photo']
         Address = request.POST['address']
         Ssn = request.POST['ssn']
         Age= request.POST['age']
@@ -19,12 +20,12 @@ def signd(request):
         Password = request.POST['pass']
         Confirm_Password = request.POST['conpass']
         doctorup = Doctor(Fname=Fname, Lname=Lname, Photo=Photo, Mobil=Mobil, Email=Email, Password=Password, Confirm_Password=Confirm_Password, Address=Address, SSN=Ssn, Age=Age)
-        if Password == Confirm_Password:
-          doctorup.save()
-          messages.success(request, "Your Account has been successfulley created." )
-          return redirect('signd')
-        else:  
+        if Password != Confirm_Password or Doctor.objects.filter(Email = request.POST['email']).exists():
            messages.error(request, "Unsuccessful registration. Invalid information.. retray again!")
+           return redirect('signd')
+        else:  
+           doctorup.save()
+           messages.success(request, "Successfully Registered... And We will check" )
            return redirect('signd')
     else:
         return render(request , 'accounts/signd.html')
@@ -32,15 +33,15 @@ def signd(request):
 #sign in code for doctor        
 def home2 (request):
     if request.method == "POST":
-        if Doctor.objects.filter(Email = request.POST['Email'],Password = request.POST['Password']).exists():
+        if Doctor.objects.filter(Email = request.POST['Email'],Password = request.POST['Password'],status=1).exists():
             data =Doctor.objects.get(Email = request.POST['Email'],
             Password = request.POST['Password'])
-            data=Doctor.objects.all()
+            data=Doctor.objects.filter(Email = request.POST['Email'])
             appointment = Appointment.objects.all()
             return render(request, 'accounts/doctor.html', {'data': data,'appointment':appointment})
             
         else:
-            context={'msg': 'Try again invalid Email or password'}
+            context={'msg': 'Try again invalid Email or password or not verified Registaration'}
             return render(request , 'accounts/signn.html',context)
 #sign up code for Nurse 
 def signn(request):
@@ -48,7 +49,7 @@ def signn(request):
         #variabels
         Fname = request.POST['fname']
         Lname = request.POST['lname']
-        Photo = request.POST['photo']
+        Photo = request.FILES['photo']
         Address = request.POST['address']
         Ssn = request.POST['ssn']
         Age= request.POST['age']
@@ -57,25 +58,25 @@ def signn(request):
         Password = request.POST['pass']
         Confirm_Password = request.POST['conpass']
         nurseup = Nurse(Fname=Fname, Lname=Lname, Photo=Photo, Mobil=Mobil, Email=Email, Password=Password, Confirm_Password=Confirm_Password, Address=Address, SSN=Ssn, Age=Age)
-        if Password == Confirm_Password:
-          nurseup.save()
-          messages.success(request, "Your Account has been successfulley created." )
-          return redirect('signn')
-        else:  
+        if Password != Confirm_Password or Nurse.objects.filter(Email = request.POST['email']).exists():
            messages.error(request, "Unsuccessful registration. Invalid information.. retray again!")
+           return redirect('signn')
+        else:  
+           nurseup.save()
+           messages.success(request, "Successfully Registered... And We will check" )
            return redirect('signn')
     else:
         return render(request , 'accounts/signn.html') 
 #sign in code for Nurse 
 def home1(request):
     if request.method == "POST":
-        if Nurse.objects.filter(Email = request.POST['Email'],Password = request.POST['Password']).exists():
+        if Nurse.objects.filter(Email = request.POST['Email'],Password = request.POST['Password'], status=1).exists():
             data =Nurse.objects.get(Email = request.POST['Email'],
             Password = request.POST['Password'])
-            data=Nurse.objects.all()
+            data=Nurse.objects.filter(Email = request.POST['Email'])
             return render(request, 'accounts/nurse.html', {'data': data})
         else:
-            context={'msg': 'Try again invalid Email or password'}
+            context={'msg': 'Try again invalid Email or password or not verified Registaration'}
             return render(request , 'accounts/signn.html',context)
 
 #sign up code for Patient
@@ -84,18 +85,18 @@ def signp(request):
         #variabels
         Fname = request.POST['fname']
         Lname = request.POST['lname']
-        Photo = request.POST['photo']
+        Photo = request.FILES['photo']
         Age= request.POST['age']
         Email = request.POST['email']
         Password = request.POST['pass']
         Confirm_Password = request.POST['conpass']
         patientup = Patient(Fname=Fname, Lname=Lname, Photo=Photo, Email=Email, Password=Password, Confirm_Password=Confirm_Password, Age=Age)
-        if Password == Confirm_Password:
-          patientup.save()
-          messages.success(request, "Your Account has been successfulley created." )
-          return redirect('signp')
-        else:  
+        if Password != Confirm_Password or Patient.objects.filter(Email = request.POST['email']).exists():
            messages.error(request, "Unsuccessful registration. Invalid information.. retray again!")
+           return redirect('signp')
+        else:  
+           patientup.save()
+           messages.success(request, "Successfully Registered... And We will check" )
            return redirect('signp')
     else:
         return render(request , 'accounts/signp.html') 
@@ -106,8 +107,11 @@ def home(request):
         if Patient.objects.filter(Email = request.POST['Email'],Password = request.POST['Password']).exists():
             data =Patient.objects.get(Email = request.POST['Email'],
             Password = request.POST['Password'])
-            data=Patient.objects.all()
-            return render(request, 'accounts/patient.html', {'data': data})
+            data=Patient.objects.filter(Email = request.POST['Email'])
+            devices = Device.objects.all()
+            doctors = Doctor.objects.filter(status=1)
+            nurses = Nurse.objects.filter(status=1)
+            return render(request, 'accounts/patient.html', {'data': data , 'devices' : devices, 'doctors' : doctors, 'nurses' : nurses })
         else:
             context={'msg': 'Try again invalid Email or password'}
             return render(request , 'accounts/signp.html',context)
