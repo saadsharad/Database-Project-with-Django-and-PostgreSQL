@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency-Sign As Medical Staff</title>
+    <link rel="shortcut icon" href="{% static 'images/iconhead.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/sign.css' %}">
+</head>
+<body>
+
+  <div class="container" id="container">
+
+    <div class="form-container sign-up-container">
+      <div class="sup">
+        <form class="up" method="POST">
+          {% csrf_token %} 
+          <h1 class="ca">Create Account</h1>
+  
+          <div class="profile-pic-div">
+          <img src="{% static 'images/photod.jpg' %}" id="photo">
+          <input required type="file" id="file" name="photo">
+          <label for="file" id="uploadBtn">Choose Photo</label>
+          </div>
+                    <input required type="text" placeholder="First Name" name="fname" />
+                    <input required type="text" placeholder="Last Name" name="lname" />
+                    <input required min="0" type="number" placeholder="Social Security Number" name="ssn" />
+                    <input required min="0" type="number" placeholder="Age" name="age" />
+                    <input required type="email" placeholder="Email" name="email" />
+                    <input required maxlength="8" type="password" placeholder="Password" name="pass" />
+                    <input required maxlength="8" type="password" placeholder="confirm your password" name="conpass" />
+                    <input  required type="text" placeholder="Enter your address" name="address" />
+                    <input required type="number" min="0" placeholder="mobile" name="mobil" />
+          <button>Sign Up</button>
+          </div>
+        </form>
+    </div>
+
+    <div class="form-container sign-in-container">
+      <form action="/accounts/home2" method="POST">
+        {% csrf_token %}
+        <h1>Sign in</h1>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Email">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name ="Password" Required>
+        </div>
+        <center><label class="text-danger">{{msg}}</label></center>
+
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="new-btn-d" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello!</h1>
+          <p>Enter your personal details</p>
+          <button class="new-btn-d" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="{% static 'js/sign.js' %}"></script>
+</body>
+</html>
