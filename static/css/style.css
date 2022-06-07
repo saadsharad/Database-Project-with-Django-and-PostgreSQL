@@ -213,7 +213,7 @@ button:focus{
   overflow: visible;
   background-color: #135680;
   font-family: Arial;
-  margin-left: -190px;
+  /* margin-left: -190px;  */
 }
 
 /* Links inside the navbar */
